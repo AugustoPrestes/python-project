@@ -5,9 +5,9 @@ import functions as ft
 
 
 # Quantidade de caracteres que a senha possuira
-tamanho_senha = {8, 15, 30}
+tamanho_senha = {8, 11, 15}
 
-# Recebendo valores do usuario # 
+# Recebendo valores do usuario
 
 
 try: # Tentando receber o nome do usuario
@@ -23,8 +23,8 @@ else:
     print("| Informe dentro das opções a quantidade de caracteres  |")
     print("| que você queira em sua senha:                         |")
     print("| 8 - Para uma senha Pequena;                           |")
-    print("| 15 - Para uma senha Média;                            |")
-    print("| 30 - Para uma senha Grande;                           |")
+    print("| 11 - Para uma senha Média;                            |")
+    print("| 15 - Para uma senha Grande;                           |")
     print("|-------------------------------------------------------|")
     print("|-------------------------------------------------------|")
 
