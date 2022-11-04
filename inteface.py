@@ -1,4 +1,4 @@
-# importando biblioteca 
+# importando biblioteca
 import PySimpleGUI as sg  # modulo da interface grafica
 import random 
 # from functions import Gerar_senha # funcao para gerrar a senha aleatoria
@@ -18,8 +18,8 @@ class PyProject:
             [sg.Text('Qual o tamanho da senha:', size=(20, 1)), sg.Combo(values=[8, 11, 15], key='qtd_caracter', default_value=8, size=(2, 1))],
             [sg.Text('Console do Gerador:')],
             [sg.Output(size=(60, 2))],
-            #[sg.Text('Logins Salvos:')],
-            #[sg.Output(size=(60, 10))],
+            [sg.Text('Logins Salvos:')],
+            [sg.Output(size=(60, 10))],
             [sg.Button('Gerrar Login')]
         ]
 
@@ -33,8 +33,10 @@ class PyProject:
             evento, valores = self.janela.read()
             if evento == sg.WINDOW_CLOSED:
                 break
-            if evento == 'Gerrar Senha':
+            if evento == 'Gerrar Login':
                 nova_senha = self.Gerar_senha(valores)
+                nick = self.Gerar_nick(valores)
+                email = self.Gerar_email(valores)
                 self.Salvar_Senha(nova_senha, valores)
 
     def Gerar_senha(self, valores):
@@ -43,17 +45,37 @@ class PyProject:
         new_pass = ''.join(chars)
         return new_pass
 
-    def Salvar_Senha(self, nova_senha, valores):
+    def Gerar_nick(self, valores):
+        #lista1 = ['b' ,'c' ,'d' ,'f' ,'g' ,'h' ,'j' ,'k' ,'l' ,'m' ,'n' ,'p' ,'r' ,'s' ,'t' ,'v' ,'x']
+        #lista2 = ['a' ,'e' ,'i' ,'o' ,'u']
+        lista3 = ['@' ,'#' ,'$' ,'%' ,'&' ,'*']
+        lista4 = ['1' ,'2' ,'3' ,'4' ,'5' ,'6' ,'7' ,'8' ,'9']
+
+        # Randomizando os caracteres     
+        #letra1 = random.choice(lista1)
+        #letra2 = random.choice(lista2)    
+        #letra3 = random.choice(lista1)
+        #letra4 = random.choice(lista2)
+        #letra5 = random.choice(lista1)
+        #letra6 = random.choice(lista2)
+        letra7 = random.choice(lista3)
+        letra8 = random.choice(lista4)
+        letra9 = random.choice(lista4)
+        letra10 = random.choice(lista4)
+
+        new_nome = valores['nome'] + letra7 + letra8 + letra9 + letra10
+        return new_nome
+
+    def Salvar_Senha(self, nova_senha, email, nick, valores):
         if valores['site'] == '' or valores['nome'] == '':
             print("Preencha todos os campos para gerar sua nova senha!")
 
         else:
             with open('Senhas.txt', 'a', newline='') as arquivo:
-                arquivo.write(f"\nSenha Salva para o Site: {valores['site']}, com o usuario: {valores['nome']}, com a senha: {nova_senha}")
-            print(nova_senha)
+                arquivo.write(f"Senha Salva para o Site: {valores['site']}, com o usuario: {nick}, com a senha: {nova_senha}\n")
+            print(f"Nick Criado: {nick}, E-mail geradp {email},senha Craida: {nova_senha}")
             print("Arquivo salvo com Sucesso em Senhas.txt")
 
 
 project = PyProject()
-
 project.Iniciar()
