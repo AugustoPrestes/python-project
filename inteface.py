@@ -27,7 +27,8 @@ class PyProject:
 
         self.janela = sg.Window('Python-Project', layout)
 
-
+  
+    # Iniciando as funcoes do algoritmo
     def Iniciar(self):
         while True:
             evento, valores = self.janela.read()
@@ -37,21 +38,25 @@ class PyProject:
                 nova_senha = self.Gerar_senha(valores)
                 nick = self.Gerar_nick(valores)
                 email = self.Gerar_email(valores)
-                self.Salvar_Senha(nova_senha, valores)
+                self.Salvar_Senha(nova_senha, email, nick, valores)
 
+
+    # Gerando a senha com as informacoes passadas pelo usuario
     def Gerar_senha(self, valores):
         char_list = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890!@#$%^&*'
         chars = random.choices(char_list, k=int(valores['qtd_caracter']))
         new_pass = ''.join(chars)
         return new_pass
 
+
+    # Gerando a senha com as informacoes passadas pelo usuario
     def Gerar_nick(self, valores):
         #lista1 = ['b' ,'c' ,'d' ,'f' ,'g' ,'h' ,'j' ,'k' ,'l' ,'m' ,'n' ,'p' ,'r' ,'s' ,'t' ,'v' ,'x']
         #lista2 = ['a' ,'e' ,'i' ,'o' ,'u']
         lista3 = ['@' ,'#' ,'$' ,'%' ,'&' ,'*']
         lista4 = ['1' ,'2' ,'3' ,'4' ,'5' ,'6' ,'7' ,'8' ,'9']
 
-        # Randomizando os caracteres     
+    #-- Randomizando os caracteres      
         #letra1 = random.choice(lista1)
         #letra2 = random.choice(lista2)    
         #letra3 = random.choice(lista1)
@@ -63,8 +68,11 @@ class PyProject:
         letra9 = random.choice(lista4)
         letra10 = random.choice(lista4)
 
-        new_nome = valores['nome'] + letra7 + letra8 + letra9 + letra10
-        return new_nome
+        if valores['nome'] == '':
+            print("Preencha todos os campos para gerar seu nick name!")
+        else:    
+            new_nome = valores['nome'] + letra7 + letra8 + letra9 + letra10
+            return new_nome
 
     def Salvar_Senha(self, nova_senha, email, nick, valores):
         if valores['site'] == '' or valores['nome'] == '':
