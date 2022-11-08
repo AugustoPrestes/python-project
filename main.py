@@ -9,11 +9,10 @@ caracters = int(input("Informe a quantidade de caracteres da senha: "))
 
 # Gerando a senha com as informacoes passadas pelo usuario
 def Gerar_senha(qtd_caracter):
-    char_list = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890!@#$%^&*'
-    chars = random.choices(char_list, k=qtd_caracter)
-    new_pass = ''.join(chars)
-    return new_pass
-
+    banco_caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890!@#$%^&*'
+    senha = random.choices(banco_caracteres, k=qtd_caracter)
+    nova_senha = ''.join(senha)
+    return nova_senha
 
 # Gerando a senha com as informacoes passadas pelo usuario
 def Gerar_nick(nome_user):
@@ -40,6 +39,7 @@ def Gerar_nick(nome_user):
         new_nome = nome_user + letra7 + letra8 + letra9 + letra10
         return new_nome
 
+
 # Função para salvar as senhas e os logins
 def Salvar_Senha(nova_senha, site, nick):
     if site == '' or nome == '':
@@ -47,8 +47,8 @@ def Salvar_Senha(nova_senha, site, nick):
 
     else:
         with open('Senhas.txt', 'a', newline='') as arquivo:
-            arquivo.write(f"\nSenha Salva para o Site: {nova_senha}, com o usuario: {nick}, para o site: {site}\n")
-        print(f"Nick Criado: {nick}, senha criada: {nova_senha}, {site} no arquivo Senhas.txt")
+            arquivo.write(f"\nSenha Salva para o Site: {site}, com o usuario: {nick}, com a senha: {nova_senha}\n")
+        print(f"Nick Criado: {nick}, senha criada: {nova_senha}, site: {site} no arquivo Senhas.txt")
 
 
 
